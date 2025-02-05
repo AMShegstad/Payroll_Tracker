@@ -316,13 +316,17 @@ export default class CommandLine {
 
           // Run query deleting department based on dept_id. I might also need to delete every employee who is also in said department.
           Queries.deleteDepartment(deptId);
+          console.log();
+          CommandLine.chooseAction();
         } else if (answers.payrollAction === "Delete a role") {
           // Select Role from a list. Return role_id
-          const roleId = await CommandLine.chooseDepartment(
+          const roleId = await CommandLine.chooseRole(
             Queries.getAllRoles()
           );
           // Run query deleting role based on dept_id. It should probably return a message stating that they have all been fired.
           Queries.deleteRole(roleId);
+          console.log();
+          CommandLine.chooseAction();
         } else if (answers.payrollAction === "Delete an employee") {
           // select an employee from a list. Return the employee_id
           const empId = await CommandLine.chooseEmployee(
@@ -330,6 +334,7 @@ export default class CommandLine {
           );
           // Run a query deleting the employee by said ID
           Queries.deleteEmployee(empId);
+          CommandLine.chooseAction();
         } else if (
           answers.payrollAction === "View total utilized budget by department"
         ) {

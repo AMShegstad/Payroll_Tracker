@@ -158,7 +158,7 @@ export default class Queries {
         }
     }
     static async deleteDepartment(department_id) {
-        const deleteDepartment = "DELETE FROM departments WHERE department_id = $1";
+        const deleteDepartment = "DELETE FROM departments WHERE id = $1";
         try {
             pool.query(deleteDepartment, [department_id]);
             console.log(`Department with id#${department_id} has been deleted.`);

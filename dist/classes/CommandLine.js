@@ -253,7 +253,6 @@ export default class CommandLine {
             else if (answers.payrollAction === "View employees by department") {
                 // Select department from list. Return the department_id
                 const deptId = await CommandLine.chooseDepartment(Queries.getAllDepartments());
-                console.log(deptId);
                 // Run the query displaying all employees in said department
                 const data = await Queries.viewEmployeesByDepartment(deptId);
                 if (data && data.length > 0) {
@@ -270,18 +269,22 @@ export default class CommandLine {
                 const deptId = await CommandLine.chooseDepartment(Queries.getAllDepartments());
                 // Run query deleting department based on dept_id. I might also need to delete every employee who is also in said department.
                 Queries.deleteDepartment(deptId);
+                console.log();
+                CommandLine.chooseAction();
             }
             else if (answers.payrollAction === "Delete a role") {
                 // Select Role from a list. Return role_id
-                const roleId = await CommandLine.chooseDepartment(Queries.getAllRoles());
+                const roleId = await CommandLine.chooseRole(Queries.getAllRoles());
                 // Run query deleting role based on dept_id. It should probably return a message stating that they have all been fired.
                 Queries.deleteRole(roleId);
+                CommandLine.chooseAction();
             }
             else if (answers.payrollAction === "Delete an employee") {
                 // select an employee from a list. Return the employee_id
                 const empId = await CommandLine.chooseEmployee(Queries.getAllEmployees());
                 // Run a query deleting the employee by said ID
                 Queries.deleteEmployee(empId);
+                CommandLine.chooseAction();
             }
             else if (answers.payrollAction === "View total utilized budget by department") {
                 // Select dept from a list. Return the dept_id

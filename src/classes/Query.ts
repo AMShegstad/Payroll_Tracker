@@ -145,7 +145,7 @@ export default class Queries {
 
   static async viewEmployeesByDepartment(department_id: number) {
     const getEmpsByDept = `SELECT employees.first_name, employees.last_name FROM employees JOIN roles ON employees.role_id = roles.role_id WHERE roles.department_id = $1`;
-    
+
     try {
       const result: QueryResult = await pool.query(getEmpsByDept, [department_id]);
       if (result.rows.length === 0) {
@@ -177,7 +177,7 @@ export default class Queries {
   }
 
   static async deleteDepartment(department_id: number) {
-    const deleteDepartment = "DELETE FROM departments WHERE department_id = $1";
+    const deleteDepartment = "DELETE FROM departments WHERE id = $1";
 
     try {
       pool.query(deleteDepartment, [department_id]);
