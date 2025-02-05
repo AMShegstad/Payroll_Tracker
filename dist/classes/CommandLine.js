@@ -22,7 +22,7 @@ export default class CommandLine {
             },
         ])
             .then((answers) => {
-            return answers.departmentSelection.id;
+            return answers.departmentSelection;
         });
         return deptId;
     }
@@ -122,7 +122,7 @@ export default class CommandLine {
                 // DONE
                 // Simple call to display * from departments.
                 const data = await Queries.getAllDepartments();
-                console.log('Deparments:');
+                console.log('--------Deparments--------');
                 for (let i = 0; i < data.length; i++) {
                     console.log(`Department #${data[i].id}) ${data[i].department_name}`);
                 }
@@ -205,7 +205,9 @@ export default class CommandLine {
                 const newEmpRole = await CommandLine.chooseRole(Queries.getAllRoles());
                 // Run the query updating the employee listing with the new role_id
                 Queries.updateEmployeeRole(empToUpdate, newEmpRole);
-                // Done!
+                console.log();
+                CommandLine.chooseAction();
+                // ------------------------TESTED AND WORKING--------------------
             }
             else if (answers.payrollAction === "Update an employee's manager") {
                 // Select an employee from a list. Return the employee_ID of the selected entry.
@@ -214,24 +216,54 @@ export default class CommandLine {
                 const newManager = await CommandLine.chooseEmployee(Queries.getAllEmployees());
                 // Run the query updating the employees manager_ID with the employee_ID of the selected manager.
                 Queries.updateEmployeeManager(employeeId, newManager);
+                console.log();
+                CommandLine.chooseAction();
+                // ------------------------TESTED AND WORKING--------------------
             }
             else if (answers.payrollAction === "View employees by manager") {
                 // Select the manager from a list of employees. Return the employee_id of the selection entry.
-                const managerId = await CommandLine.chooseEmployee(Queries.getAllEmployees());
+                const managerId = await CommandLine.chooseManager(Queries.getAllEmployees());
                 // Run the query returning all employees managed by the selected employee.
-                Queries.viewEmployeesByManager(managerId);
+                const data = await Queries.viewEmployeesByManager(managerId);
+                if (data && data.length > 0) {
+                    console.log(`------Employees under mananger_id #${managerId}------`);
+                    for (let i = 0; i < data.length; i++) {
+                        console.log(`${data[i].first_name} ${data[i].last_name}`);
+                    }
+                }
+                console.log();
+                CommandLine.chooseAction();
+                // ------------------------TESTED AND WORKING--------------------
             }
             else if (answers.payrollAction === "View employees by role") {
                 // Select the role from a list. Return the role_id
                 const roleId = await CommandLine.chooseRole(Queries.getAllRoles());
                 // Run the query showing all employees with selected role_id.
-                Queries.viewEmployeesByRole(roleId);
+                const data = await Queries.viewEmployeesByRole(roleId);
+                if (data && data.length > 0) {
+                    console.log(`-----------Employees with role_id #${roleId}---------`);
+                    for (let i = 0; i < data.length; i++) {
+                        console.log(`${data[i].first_name} ${data[i].last_name}`);
+                    }
+                }
+                console.log();
+                CommandLine.chooseAction();
+                // ------------------------TESTED AND WORKING----------------------
             }
             else if (answers.payrollAction === "View employees by department") {
                 // Select department from list. Return the department_id
                 const deptId = await CommandLine.chooseDepartment(Queries.getAllDepartments());
+                console.log(deptId);
                 // Run the query displaying all employees in said department
-                Queries.viewEmployeesByDepartment(deptId);
+                const data = await Queries.viewEmployeesByDepartment(deptId);
+                if (data && data.length > 0) {
+                    console.log(`----------Employees in department #${deptId}---------`);
+                    for (let i = 0; i < data.length; i++) {
+                        console.log(`${data[i].first_name} ${data[i].last_name}`);
+                    }
+                }
+                CommandLine.chooseAction();
+                // ------------------------TESTED AND WORKING----------------------
             }
             else if (answers.payrollAction === "Delete a department") {
                 // Select department from a list. Return department ID

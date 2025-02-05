@@ -96,7 +96,7 @@ export default class Queries {
     }
     static async updateEmployeeManager(employeeId, managerId) {
         await pool
-            .query("UPDATE employees SET manager_id = $1 WHERE id = $2", [
+            .query("UPDATE employees SET manager_id = $1 WHERE employee_id = $2", [
             managerId,
             employeeId,
         ])
@@ -111,7 +111,13 @@ export default class Queries {
         const sql = "SELECT * FROM employees WHERE manager_id = $1";
         try {
             const result = await pool.query(sql, [managerId]);
-            return result.rows;
+            if (result.rows.length === 0) {
+                console.log("No employees under selected manager...");
+                return [];
+            }
+            else {
+                return result.rows;
+            }
         }
         catch (err) {
             console.log("Error fetching employees: ", err);
@@ -119,20 +125,33 @@ export default class Queries {
         }
     }
     static async viewEmployeesByDepartment(department_id) {
-        const getEmpsByDept = `SELECT employees.first_name, employees.last_name FROM employees JOIN roles ON employees.role_id = role.role_id WHERE roles.department = $1`;
+        const getEmpsByDept = `SELECT employees.first_name, employees.last_name FROM employees JOIN roles ON employees.role_id = roles.role_id WHERE roles.department_id = $1`;
         try {
             const result = await pool.query(getEmpsByDept, [department_id]);
-            return result.rows;
+            if (result.rows.length === 0) {
+                console.log("No employees in the selected department...");
+                return [];
+            }
+            else {
+                return result.rows;
+            }
         }
         catch (err) {
             console.error("Error fetching employees: ", err);
+            return [];
         }
     }
     static async viewEmployeesByRole(role_id) {
         const getEmployees = "SELECT * FROM employees WHERE role_id = $1";
         try {
             const result = await pool.query(getEmployees, [role_id]);
-            return result.rows;
+            if (result.rows.length === 0) {
+                console.log("No employees in the selected role...");
+                return [];
+            }
+            else {
+                return result.rows;
+            }
         }
         catch (err) {
             console.error("Error fetching employees: ", err);
