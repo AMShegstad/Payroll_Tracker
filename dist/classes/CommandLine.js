@@ -277,6 +277,7 @@ export default class CommandLine {
                 const roleId = await CommandLine.chooseRole(Queries.getAllRoles());
                 // Run query deleting role based on dept_id. It should probably return a message stating that they have all been fired.
                 Queries.deleteRole(roleId);
+                console.log();
                 CommandLine.chooseAction();
             }
             else if (answers.payrollAction === "Delete an employee") {
@@ -290,10 +291,20 @@ export default class CommandLine {
                 // Select dept from a list. Return the dept_id
                 const deptId = await CommandLine.chooseDepartment(Queries.getAllDepartments());
                 // Run the query calculating the Sum of all salaries with the cooresponding deptId
-                Queries.viewTotalUtilizedBudgetByDepartment(deptId);
+                const data = await Queries.viewTotalUtilizedBudgetByDepartment(deptId);
+                console.log(`Tthe selected department's total utilized budget is $${data}`);
+                CommandLine.chooseAction();
             }
             else if (answers.payrollAction === "Exit") {
                 console.log("Goodbye!");
+                console.log("  _____                 _ _                ");
+                console.log(" |  __ \\               | | |               ");
+                console.log(" | |  \\/ ___   ___   __| | |__  _   _  ___ ");
+                console.log(" | | __ / _ \\ / _ \\ / _` | '_ \\| | | |/ _ \\");
+                console.log(" | |_\\ \\ (_) | (_) | (_| | |_) | |_| |  __/");
+                console.log("  \\____/\\___/ \\___/ \\__,_|_.__/ \\__, |\\___|");
+                console.log("                                 __/ |     ");
+                console.log("                                |___/      ");
                 process.exit();
             }
         });

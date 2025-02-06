@@ -343,9 +343,20 @@ export default class CommandLine {
             Queries.getAllDepartments()
           );
           // Run the query calculating the Sum of all salaries with the cooresponding deptId
-          Queries.viewTotalUtilizedBudgetByDepartment(deptId);
+          const data = await Queries.viewTotalUtilizedBudgetByDepartment(deptId);
+          console.log(`Tthe selected department's total utilized budget is $${data}`);
+          CommandLine.chooseAction();
         } else if (answers.payrollAction === "Exit") {
           console.log("Goodbye!");
+          console.log("  _____                 _ _                ");
+          console.log(" |  __ \\               | | |               ");
+          console.log(" | |  \\/ ___   ___   __| | |__  _   _  ___ ");
+          console.log(" | | __ / _ \\ / _ \\ / _` | '_ \\| | | |/ _ \\");
+          console.log(" | |_\\ \\ (_) | (_) | (_| | |_) | |_| |  __/");
+          console.log("  \\____/\\___/ \\___/ \\__,_|_.__/ \\__, |\\___|");
+          console.log("                                 __/ |     ");
+          console.log("                                |___/      ");
+          
           process.exit();
         }
       });
