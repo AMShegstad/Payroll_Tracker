@@ -7,7 +7,7 @@
 A: This software is intended to make is easy to track, manage, and manipulate the departments, roles, and, employees in your business, not to mention the myriad ways in which they are all connected. The tool will allow you to view all departments, all roles, and all employees. Options will permit you to filter which results you are seeing, including viewing employees by their role, their manager, and their department. Further options include updating roles and managers, and even deleting employees, roles, and even entire departments. <br>
 
 ## Installation Instructions 
-***Q: How do you install README Generator?*** <br>
+***Q: How do you install Payroll Tracker??*** <br>
 A: Installation is easy! Go ahead and clone the repository to your local device. From there, navigate to the local directory from your command line interface, run "npm install" to gather to necessary dependencies, log in to PostgreSql to run the schema.sql and seeds.sql (\i src/db/schema.sql and so on...) files, exit Postgres and compile the code with "npx tsc", and finally, run the command "npm run start". That said, you will require node.js in order to run this software.<br>
 
 ## Usage
@@ -15,7 +15,7 @@ A: Installation is easy! Go ahead and clone the repository to your local device.
 A: The Payroll Tracker is intended for use my Human Resources professionals, or small business owners to make the heirarchy of their company easier to navigate.<br>
 
 ## Contributions
-***Q: How can developers contribute to README Generator?*** <br>
+***Q: How can developers contribute to Payroll Tracker??*** <br>
 A: Developers can contribute to the Payroll Tracker by creating their own branch and submitting a pull request. Add issues via the repository, and offer feedback via the email address at the bottom of the README document if you have any, but try and keep it friendly! We're all in this together!<br>
 
 ## Testing 
@@ -33,7 +33,5 @@ A: This software is available for user under the The Unlicense license. If you'd
 ***GitHub:*** Visit [my GitHub page](https://www.github.com/AMShegstad) for more of my work!<br>
 ***Email:*** you can reach me at aShegstad@my365.Bellevue.edu with further questions or comments.
 
-
-(This README created using README Generator! I know, cool, right?!)
 
 [Click Here](https://drive.google.com/file/d/14Gpzg99y7vFbSdTIrERVby6dPiBHPxra/view) to watch a brief walkthrough of the software!
