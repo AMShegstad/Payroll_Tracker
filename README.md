@@ -34,4 +34,4 @@ A: This software is available for user under the The Unlicense license. If you'd
 ***Email:*** you can reach me at aShegstad@my365.Bellevue.edu with further questions or comments.
 
 
-[Click Here](https://drive.google.com/file/d/14Gpzg99y7vFbSdTIrERVby6dPiBHPxra/view) to watch a brief walkthrough of the software!
+[Click Here](https://drive.google.com/file/d/1wwvOvSer0DTSpvhzi7BC80rE1F3vLgx5/view) to watch a brief walkthrough of the software!
